@@ -1,10 +1,13 @@
-# config.py
-import os
+from flask import Flask, render_template, request
+from flask_mail import Mail, Message
 
-basedir = os.path.abspath(os.path.dirname(__file__))
+app = Flask(__name__)
 
-class Config(object):
-    SECRET_KEY = os.environ.get('SECRET_KEY') or 'your_secret_key_here'
-    SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL') or \
-        'sqlite:///' + os.path.join(basedir, 'db.sqlite3')
-    SQLALCHEMY_TRACK_MODIFICATIONS = False
+app.config['MAIL_SERVER'] = 'smtp.gmail.com'
+app.config['MAIL_PORT'] = 465
+app.config['MAIL_USERNAME'] = 'bookhub483@gmail.com'
+app.config['MAIL_PASSWORD'] = 'Qwerty@123'
+app.config['MAIL_USE_TLS'] = False
+app.config['MAIL_USE_SSL'] = True
+
+mail = Mail(app)
